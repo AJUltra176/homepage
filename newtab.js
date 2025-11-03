@@ -48,7 +48,7 @@ BOOKMARKS.forEach(b => {
 
 // ----- Bookmarks folder listing: Mobile Bookmarks / Get Interested -----
 fetch("https://api.raindrop.io/rest/v1/raindrops/12345678", {
-  headers: { Authorization: "9625f4e3-68e0-40a2-a53c-2190b5dc9cac" }
+  headers: { Authorization: "Bearer 9625f4e3-68e0-40a2-a53c-2190b5dc9cac" }
 })
   .then(response => response.json())
   .then(data => {
