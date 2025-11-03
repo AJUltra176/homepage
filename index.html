@@ -223,6 +223,7 @@ button {
     height: auto;
     justify-content: flex-start;
     align-items: stretch;
+      overflow-x: hidden;     /* stops any horizontal scroll */
   }
   /* Make the mobile container full-width with a small gutter */
   .top,
@@ -230,7 +231,8 @@ button {
     width: 100%;
     max-width: none;      /* remove any caps inherited from desktop */
     margin: 0;
-    padding: 0 16px;      /* consistent side gutters */
+    padding: 0 12px;      /* consistent side gutters */
+     box-sizing: border-box;
   }
 
   .wrap {
@@ -335,6 +337,7 @@ button {
 
 
 </html>
+
 
 
 
