@@ -218,6 +218,12 @@ button {
 
     /* ----- Mobile layout adjustments ----- */
 @media (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
   /* Make the mobile container full-width with a small gutter */
   .top,
   .wrap {
@@ -245,6 +251,7 @@ button {
 }
 
   .top {
+    margin-top: 24px;
     width: 94vw;
     text-align: center;
     margin-bottom: 20px;
@@ -328,6 +335,7 @@ button {
 
 
 </html>
+
 
 
 
