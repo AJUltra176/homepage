@@ -47,22 +47,35 @@ BOOKMARKS.forEach(b => {
 
 
 // ----- Bookmarks folder listing: Mobile Bookmarks / Get Interested -----
-fetch("https://raindrop.io/api/public/collection/62744774", {
-  headers: { Authorization: "Bearer 9625f4e3-68e0-40a2-a53c-2190b5dc9cac" }
-})
-  .then(response => response.json())
-  .then(data => {
-    const container = document.querySelector("#discover");
-    container.innerHTML = "";
-    data.items.slice(0, 10).forEach(item => {
-      const link = document.createElement("a");
-      link.href = item.link;
-      link.textContent = item.title;
-      link.target = "_blank";
-      container.appendChild(link);
-      container.appendChild(document.createElement("br"));
-    });
-  });
+// ----- Bookmarks via Raindrop RSS -----
+async function renderRSS() {
+  const list = document.getElementById('bm-list');
+  const warn = document.getElementById('bm-warn');
+  list.innerHTML = '';
+
+  try {
+    const response = await fetch('https://bg.raindrop.io/rss/public/62744774');
+    if (!response.ok) throw new Error('Network error');
+    const text = await response.text();
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, 'application/xml');
+    const items = Array.from(xml.querySelectorAll('item')).slice(0, 10);
+
+    for (const item of items) {
+      const title = item.querySelector('title')?.textContent ?? '(no title)';
+      const link = item.querySelector('link')?.textContent ?? '#';
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+      list.appendChild(li);
+    }
+  } catch (err) {
+    console.error(err);
+    warn.hidden = false;
+  }
+}
+
+renderRSS();
+
 
 
 
