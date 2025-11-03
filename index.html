@@ -218,24 +218,31 @@ button {
 
     /* ----- Mobile layout adjustments ----- */
 @media (max-width: 768px) {
-  body {
-    justify-content: flex-start;
-    align-items: stretch;
-    background: #0f1418; /* static background colour only */
+  /* Make the mobile container full-width with a small gutter */
+  .top,
+  .wrap {
+    width: 100%;
+    max-width: none;      /* remove any caps inherited from desktop */
+    margin: 0;
+    padding: 0 16px;      /* consistent side gutters */
   }
 
   .wrap {
     display: flex;
     flex-direction: column;
-    width: 94vw;
-    gap: 14px;
+    align-items: stretch; /* panels should fill the container */
+    gap: 16px;
   }
 
   .panel {
+    width: 100%;          /* hard guarantee: all panels same width */
+    box-sizing: border-box;
+    border-radius: 12px;
     padding: 18px;
     box-shadow: none;
-    border-radius: 12px;
+    text-align: left;     /* belt-and-braces: keep content left-aligned */
   }
+}
 
   .top {
     width: 94vw;
@@ -321,6 +328,7 @@ button {
 
 
 </html>
+
 
 
 
